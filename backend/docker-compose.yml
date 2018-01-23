@@ -5,7 +5,7 @@ services:
         user: app
         working_dir: /home/app/src
         ports:
-            - "8888:8000"
+            - "8888:8888"
         volumes:
             - .:/home/app/src
         command: './run.sh'
