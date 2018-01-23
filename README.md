@@ -20,12 +20,12 @@ Here you will learn how to create Real-Time PHP application with PWA and Electro
   * `cd` to directory
   * rename `database.dist.sqlite` to `database.sqlite` inside `app/Resources`
   * run `docker-compose up` container will make `composer install` and launch built-in `symfony server`
-  * go to address `http://172.18.0.2:8888` - you should see some logs
+  * go to address `http://localhost:8888` - you should see some logs
 
 * `frontend` 
   * `cd` to directory
   * run `docker-compose up` container will make `npm install` and launch node's `light-server`. 
-  * go to address `http://0.0.0.0:9999` - you should see some text
+  * go to address `http://localhost:9999` - you should see some text
 
 Try both of these address - you should see some logs in containers
 

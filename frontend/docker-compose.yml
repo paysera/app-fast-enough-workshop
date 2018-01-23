@@ -7,5 +7,5 @@ services:
         volumes:
             - .:/home/node/src
         ports:
-            - "9999:8000"
+            - "9999:9999"
         command: './run.sh'
