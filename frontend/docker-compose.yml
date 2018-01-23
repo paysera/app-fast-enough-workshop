@@ -1,0 +1,11 @@
+version: "2"
+services:
+    node:
+        build: .
+        user: node
+        working_dir: /home/node/src
+        volumes:
+            - .:/home/node/src
+        ports:
+            - "9999:8000"
+        command: './run.sh'
