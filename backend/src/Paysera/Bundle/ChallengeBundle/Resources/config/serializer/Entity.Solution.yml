@@ -1,15 +1,2 @@
 Paysera\Bundle\ChallengeBundle\Entity\Solution:
-    exclusion_policy: all
-    properties:
-        challengeIdentifier:
-            expose: true
-            type: string
-        solution:
-            expose: true
-            type: string
-        userId:
-            expose: true
-            type: string
-        duration:
-            expose: true
-            type: float
+#    TODO: define fields to serialize

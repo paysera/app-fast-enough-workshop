@@ -5,13 +5,6 @@
     <entity repository-class="Paysera\Bundle\ChallengeBundle\Repository\SolutionRepository"
             name="Paysera\Bundle\ChallengeBundle\Entity\Solution"
             table="challenge_solutions">
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
-        <field name="challengeIdentifier" type="string" column="challenge_identifier" length="255"/>
-        <field name="solution" type="text" column="solution"/>
-        <field name="userId" type="string" column="user_id" length="255"/>
-        <field name="duration" type="decimal" scale="6" precision="10" column="duration"/>
-        <field name="dateCreated" type="datetime" column="date_created"/>
+        <!--todo: persist some fields-->
     </entity>
 </doctrine-mapping>
