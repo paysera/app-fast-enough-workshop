@@ -2,7 +2,10 @@ version: "2"
 services:
     web:
         build: .
+        user: app
+        working_dir: /home/app/src
         ports:
             - "8888:8000"
         volumes:
             - .:/home/app/src
+        command: './run.sh'
