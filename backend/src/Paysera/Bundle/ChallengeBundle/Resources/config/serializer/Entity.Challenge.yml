@@ -1,0 +1,9 @@
+Paysera\Bundle\ChallengeBundle\Entity\Challenge:
+    exclusion_policy: all
+    properties:
+        identifier:
+            expose: true
+            type: string
+        description:
+            expose: true
+            type: string

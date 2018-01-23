@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="paysera_challenge.controller.challenge"
+                 class="Paysera\Bundle\ChallengeBundle\Controller\ChallengeController">
+            <argument type="service" id="paysera_challenge.challenge_provider"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="paysera_challenge.controller.solution"
+                 class="Paysera\Bundle\ChallengeBundle\Controller\SolutionController">
+            <argument type="service" id="paysera_challenge.solution_verifier"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="paysera_challenge.solution_manager"/>
+            <argument type="service" id="paysera_challenge.leaderboard_notifier"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+    </services>
+</container>

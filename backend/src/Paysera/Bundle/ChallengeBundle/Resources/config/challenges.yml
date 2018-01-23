@@ -1,0 +1,21 @@
+parameters:
+    paysera_challenge.challenges:
+        -
+            identifier: addition
+            description: |
+                Create a function, which could return the sum of two numbers.
+            test_cases:
+                - { arguments: [15, 17] result: 32 }
+                - { arguments: [-87, 87] result: 0 }
+                - { arguments: [0.00001, 0.00002] result: 0.00003 }
+
+        -
+            identifier: fibonacci
+            description: |
+                Create a function, which could return the n-th fibonacci number with respect to first and second term:
+                fibonacci(first, second, nth)
+                i.e. fibonacci(1, 1, 6) => 8 - sixth number in fibonacci sequence starting from 1 and 1 is 8
+            test_cases:
+                - { arguments: [1, 1, 6] result: 8 }
+                - { arguments: [0, 1, 7] result: 8 }
+                - { arguments: [5, 8, 4] result: 21 }

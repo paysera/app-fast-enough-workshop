@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <imports>
+        <import resource="services/controllers.xml"/>
+        <import resource="services/repositories.xml"/>
+    </imports>
+
+    <services>
+        <service id="paysera_challenge.challenge_provider"
+                 class="Paysera\Bundle\ChallengeBundle\Service\ChallengeProvider">
+            <argument>%paysera_challenge.challenges%</argument>
+        </service>
+
+        <service id="paysera_challenge.solution_verifier"
+                 class="Paysera\Bundle\ChallengeBundle\Service\SolutionVerifier">
+            <argument type="service" id="paysera_challenge.challenge_provider"/>
+            <argument type="service" id="paysera_challenge.code_tester.javascript"/>
+        </service>
+
+        <service id="paysera_challenge.code_tester.javascript"
+                 class="Paysera\Bundle\ChallengeBundle\Service\CodeTester\JavascriptTester">
+        </service>
+
+        <service id="paysera_challenge.solution_manager"
+                 class="Paysera\Bundle\ChallengeBundle\Service\SolutionManager">
+            <argument type="service" id="paysera_challenge.repository.solution"/>
+            <argument type="service" id="doctrine.orm.entity_manager"/>
+        </service>
+
+        <service id="paysera_challenge.leaderboard_notifier"
+                 class="Paysera\Bundle\ChallengeBundle\Service\LeaderboardNotifier">
+            <argument type="service" id="paysera_challenge.pusher"/>
+        </service>
+
+        <service id="paysera_challenge.pusher"
+                 class="Pusher\Pusher">
+            <argument>%pusher_app_key%</argument>
+            <argument>%pusher_app_secret%</argument>
+            <argument>%pusher_app_id%</argument>
+        </service>
+    </services>
+</container>

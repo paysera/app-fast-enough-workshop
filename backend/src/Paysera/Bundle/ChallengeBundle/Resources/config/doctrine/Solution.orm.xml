@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="Paysera\Bundle\ChallengeBundle\Repository\SolutionRepository"
+            name="Paysera\Bundle\ChallengeBundle\Entity\Solution"
+            table="challenge_solutions">
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+        <field name="challengeIdentifier" type="string" column="challenge_identifier" length="255"/>
+        <field name="solution" type="text" column="solution"/>
+        <field name="userId" type="string" column="user_id" length="255"/>
+        <field name="duration" type="decimal" scale="6" precision="10" column="duration"/>
+        <field name="dateCreated" type="datetime" column="date_created"/>
+    </entity>
+</doctrine-mapping>

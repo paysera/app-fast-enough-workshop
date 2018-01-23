@@ -1,0 +1,51 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+parameters:
+    locale: en
+
+framework:
+    secret: '%secret%'
+    router:
+        resource: '%kernel.project_dir%/app/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        handler_id: session.handler.native_file
+        save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+    profiler:
+        collect: false
+        enabled: false
+
+doctrine:
+    dbal:
+        driver: pdo_sqlite
+        dbname: 'fast_enough'
+        path: '%kernel.root_dir%/Resources/database.sqlite'
+        memory: true
+        charset: UTF8
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+sensio_framework_extra:
+    request: { converters: true }
+
+fos_rest:
+    routing_loader:
+        default_format: json
+        include_format: false
+    body_converter:
+        enabled: true
