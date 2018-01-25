@@ -2,7 +2,7 @@ var webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-    entry: __dirname + '/../src/index.js',
+    entry: ['babel-polyfill', __dirname + '/../src/index.js'],
     output: {
         path: __dirname + '/../compiled/',
         publicPath: '/compiled/',
@@ -15,9 +15,9 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: [['env', {
-                        'modules': false
-                    }]]
+                    presets: [
+                        ['env', 'stage-0']
+                    ]
                 }
             },
             {

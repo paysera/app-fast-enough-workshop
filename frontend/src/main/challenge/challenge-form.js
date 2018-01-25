@@ -39,7 +39,7 @@ class ChallengeForm {
         Timer.clear();
     }
 
-    submitSolution() {
+    async submitSolution() {
         Timer.pause();
         jQuery(this.selector + ' .alerts-container').empty();
 
@@ -48,7 +48,7 @@ class ChallengeForm {
             return obj;
         }, {});
 
-        solution.user_id = UserProvider.getCurrentUser();
+        solution.user_id = await UserProvider.getCurrentUser();
         solution.duration = Timer.getCurrentTime();
 
         let valid = true;

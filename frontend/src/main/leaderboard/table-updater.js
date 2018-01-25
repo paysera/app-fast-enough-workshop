@@ -7,9 +7,9 @@ class TableUpdater {
         this.selector = 'table.auto-update';
     }
 
-    processRow({user, challenge, duration}) {
+    async processRow({user, challenge, duration}) {
         let highlight = '';
-        if (UserProvider.getCurrentUser() === user) {
+        if (await UserProvider.getCurrentUser() === user) {
             highlight = 'table-info';
         }
 

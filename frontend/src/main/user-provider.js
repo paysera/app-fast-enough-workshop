@@ -6,8 +6,8 @@ class UserProvider {
         this.selector = 'input#username';
     }
 
-    getCurrentUser() {
-        let userStored = Storage.get('username');
+    async getCurrentUser() {
+        let userStored = await Storage.get('username');
         let userInput = jQuery(this.selector).val();
 
         if (userInput !== '') {
@@ -23,8 +23,8 @@ class UserProvider {
         return null;
     }
 
-    updateUserField() {
-        jQuery(this.selector).val(this.getCurrentUser())
+    async updateUserField() {
+        jQuery(this.selector).val(await this.getCurrentUser())
     }
 }
 

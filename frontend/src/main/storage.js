@@ -1,22 +1,25 @@
-import Storages from 'js-storage';
+import idbKeyval from 'idb-keyval';
 
 class Storage {
     constructor() {
-        const storage = new Storages.initNamespaceStorage('fast_enough');
-        this.storage = storage.localStorage;
+        this.namespace = 'fast_enough:';
     }
 
-    get(key) {
-        const value = this.storage.get(key);
+    async get(key) {
+        const value = await idbKeyval.get(this.getNamespacedKey(key));
+
         if (value === undefined) {
             return null;
         }
-
         return value;
     }
 
     set(key, value) {
-        return this.storage.set(key, value);
+        idbKeyval.set(this.getNamespacedKey(key), value);
+    }
+
+    getNamespacedKey(key) {
+        return this.namespace + key;
     }
 }
 
