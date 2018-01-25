@@ -1,0 +1,12 @@
+Paysera\Bundle\ChallengeBundle\Entity\LeaderboardEntry:
+    exclusion_policy: all
+    properties:
+        challenge:
+            expose: true
+            type: string
+        user:
+            expose: true
+            type: string
+        duration:
+            expose: true
+            type: float

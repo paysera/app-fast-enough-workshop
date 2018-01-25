@@ -25,4 +25,16 @@ class SolutionRepository extends EntityRepository
             ->getOneOrNullResult()
         ;
     }
+
+    /**
+     * @return Solution[]
+     */
+    public function findAllOrdered()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.duration', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -1,9 +1,85 @@
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="/compiled/bundle.css">
-        <script type="application/javascript" src="/compiled/bundle.js"></script>
-    </head>
-    <body>
-        It works!
-    </body>
+<head>
+    <link rel="stylesheet" href="/compiled/bundle.css">
+    <script type="application/javascript" src="/compiled/bundle.js"></script>
+</head>
+<body>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">Fast enough?</h1>
+        <p class="lead">Choose a challenge and prove you're fast!</p>
+        <form class="form-inline">
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">Challenger:</div>
+                </div>
+                <input type="text" class="form-control" id="username" placeholder="Enter your name">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-challenges-tab" data-toggle="pill" href="#v-pills-challenges" role="tab"
+                   aria-controls="v-pills-challenges" aria-selected="true">
+                    Challenges
+                </a>
+                <a class="nav-link" id="v-pills-leaderboards-tab" data-toggle="pill" href="#v-pills-leaderboards" role="tab"
+                   aria-controls="v-pills-leaderboards" aria-selected="false">
+                    Leaderboard
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane fade show active" id="v-pills-challenges" role="tabpanel" aria-labelledby="v-pills-challenges-tab">
+                    <div class="alert alert-primary" role="alert">
+                        Timer will start as soon as you type your first character in Solution box.
+                    </div>
+                    <form class="challenge-form">
+                        <div class="form-group">
+                            <label for="challenge-selector">Pick a challenge</label>
+                            <select class="form-control" id="challenge-selector" name="challenge_identifier">
+                                <option></option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-control-plaintext" id="challenge-description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="solution">Solution</label>
+                            <textarea class="form-control" id="solution" rows="10" name="solution"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <div class="clearfix">
+                                <button type="button" class="btn btn-primary float-left" role="button" id="submit">Submit</button>
+                                <h3 class="float-right" id="timer">0</h3>
+                            </div>
+                        </div>
+                        <div class="form-group alerts-container"></div>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="v-pills-leaderboards" role="tabpanel" aria-labelledby="v-pills-leaderboards-tab">
+                    <table class="table auto-update">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Challenge</th>
+                                <th scope="col" data-sort>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

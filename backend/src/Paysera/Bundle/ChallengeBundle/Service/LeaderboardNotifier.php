@@ -24,8 +24,9 @@ class LeaderboardNotifier
                 $solution->getDuration()
             ),
             'challenge' => $solution->getChallengeIdentifier(),
-            'duration' => $solution->getDuration(),
+            'duration' => (float)$solution->getDuration(),
             'date' => $solution->getDateCreated()->format('Y-m-d H:i:s'),
+            'user' => $solution->getUserId(),
         ];
 
         $this->pusher->trigger('leaderboard', 'updated', $data);
