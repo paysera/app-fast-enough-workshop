@@ -28,10 +28,10 @@ module.exports = {
                 }
             },
             {
-                test: /\.less$/,
+                test: /\.s?css$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: 'css-loader!less-loader'
+                    use: 'css-loader!sass-loader'
                 })
             },
         ]

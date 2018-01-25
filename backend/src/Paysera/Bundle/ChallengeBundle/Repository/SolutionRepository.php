@@ -6,5 +6,5 @@ use Doctrine\ORM\EntityRepository;
 
 class SolutionRepository extends EntityRepository
 {
-
+    //TODO: implement Repository methods
 }

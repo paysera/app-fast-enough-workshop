@@ -6,4 +6,5 @@
 
     <import id="challenges" type="rest" resource="paysera_challenge.controller.challenge"/>
     <import id="solutions" type="rest" resource="paysera_challenge.controller.solution"/>
+    <import id="leaderboards" type="rest" resource="paysera_challenge.controller.leaderboard"/>
 </routes>

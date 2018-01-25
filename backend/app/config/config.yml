@@ -49,3 +49,10 @@ fos_rest:
         include_format: false
     body_converter:
         enabled: true
+
+nelmio_cors:
+    paths:
+        '^/challenge/rest/v1':
+            allow_origin: ['*']
+            allow_headers: ['Content-Type']
+            allow_methods: ['POST', 'PUT', 'GET']
