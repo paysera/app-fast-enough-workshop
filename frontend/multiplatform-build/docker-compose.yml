@@ -1,0 +1,9 @@
+version: "2"
+services:
+    node:
+        build: .
+        user: app
+        working_dir: /home/app/src
+        volumes:
+            - ../:/home/app/src
+        command: 'tail -f /dev/null'

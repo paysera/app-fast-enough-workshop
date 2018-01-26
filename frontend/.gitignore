@@ -2,3 +2,5 @@
 /compiled
 !/compiled/.gitkeep
 !/src/compiled
+
+out/
