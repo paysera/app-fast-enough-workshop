@@ -8,6 +8,7 @@ module.exports = {
         publicPath: '/compiled/',
         filename: 'bundle.js'
     },
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -30,7 +31,7 @@ module.exports = {
             {
                 test: /\.s?css$/,
                 loader: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
+                    fallback: 'style-loader?sourceMap',
                     use: 'css-loader!sass-loader'
                 })
             },
