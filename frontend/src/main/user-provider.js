@@ -24,7 +24,7 @@ class UserProvider {
     }
 
     async updateUserField() {
-        jQuery(this.selector).val(await this.getCurrentUser())
+        jQuery(this.selector).val(await this.getCurrentUser());
     }
 }
 
@@ -32,6 +32,7 @@ const instance = new UserProvider();
 
 jQuery(document).ready(() => {
     instance.updateUserField();
+
 });
 
 export default instance;

@@ -3,6 +3,7 @@ import ChallengesClient from './challenges-client';
 import SolutionClient from './solution-client';
 import UserProvider from '../user-provider';
 import Timer from './timer';
+import CodeTester from './code-tester';
 
 class ChallengeForm {
     constructor() {
@@ -14,7 +15,7 @@ class ChallengeForm {
         const challengesSelect = jQuery(this.selector + ' #challenge-selector');
         ChallengesClient.getChallenges().then((challenges) => {
             jQuery.each(challenges, (key, challenge) => {
-                this.challenges[challenge.identifier] = challenge.description;
+                this.challenges[challenge.identifier] = challenge;
 
                 challengesSelect
                     .append(jQuery('<option></option>')
@@ -22,13 +23,14 @@ class ChallengeForm {
                         .text(challenge.identifier))
                 ;
             });
+            CodeTester.populateChallenges(this.challenges);
         });
     }
 
     processChangedChallenge(identifier) {
         let html = null;
         if (this.challenges.hasOwnProperty(identifier)) {
-            html = this.challenges[identifier];
+            html = this.challenges[identifier].description;
             Timer.allowToRun();
         } else {
             Timer.disallowToRun();
@@ -39,34 +41,43 @@ class ChallengeForm {
         Timer.clear();
     }
 
-    async submitSolution() {
+    async testSolution() {
         Timer.pause();
         jQuery(this.selector + ' .alerts-container').empty();
 
-        const solution = jQuery(this.selector).serializeArray().reduce((obj, item) => {
-            obj[item.name] = item.value;
-            return obj;
-        }, {});
-
-        solution.user_id = await UserProvider.getCurrentUser();
-        solution.duration = Timer.getCurrentTime();
-
-        let valid = true;
-
-        if (solution.user_id === null) {
-            this.appendAlert('Please enter <strong>Challenger name</strong> above', 'danger');
-            valid = false;
-        }
-        if (solution.duration === null || solution.solution === '') {
-            this.appendAlert('Please put your <strong>solution</strong> in the field above', 'danger');
-            valid = false;
-        }
-        if (solution.challenge_identifier === '') {
-            this.appendAlert('Please pick a <strong>challenge</strong> from the list above', 'danger');
-            valid = false;
+        let solution = null;
+        try {
+            solution = await this.getValidSolution();
+        } catch (error) {
+            this.appendAlert(error.message, 'danger');
+            return;
         }
 
-        if (!valid) {
+        CodeTester.testSolution(solution).then(
+            (result) => {
+                this.appendAlert('Solution <strong>looks good</strong>, You can submit it now.', 'success');
+            },
+            (error) => {
+                jQuery.each(error.test_results, (key, element) => {
+                    this.appendAlert(element.message, 'warning');
+                });
+            }
+        )
+    }
+
+    async submitSolution() {
+        if (!navigator.onLine) {
+            this.appendAlert('Cannot submit solution while offline', 'info');
+            return;
+        }
+        Timer.pause();
+        jQuery(this.selector + ' .alerts-container').empty();
+
+        let solution = null;
+        try {
+            solution = await this.getValidSolution();
+        } catch (error) {
+            this.appendAlert(error.message, 'danger');
             return;
         }
 
@@ -82,6 +93,28 @@ class ChallengeForm {
                 });
             }
         )
+    }
+
+    async getValidSolution() {
+        const solution = jQuery(this.selector).serializeArray().reduce((obj, item) => {
+            obj[item.name] = item.value;
+            return obj;
+        }, {});
+
+        solution.user_id = await UserProvider.getCurrentUser();
+        solution.duration = Timer.getCurrentTime();
+
+        if (solution.user_id === null) {
+            throw new Error('Please enter <strong>Challenger name</strong> above');
+        }
+        if (solution.duration === null || solution.solution === '') {
+            throw new Error('Please put your <strong>solution</strong> in the field above');
+        }
+        if (solution.challenge_identifier === '') {
+            throw new Error('Please pick a <strong>challenge</strong> from the list above');
+        }
+
+        return solution;
     }
 
     appendAlert(text, type) {
@@ -105,6 +138,9 @@ class ChallengeForm {
             })
             .on('click', this.selector + ' #submit', null, function() {
                 self.submitSolution();
+            })
+            .on('click', this.selector + ' #test', null, function() {
+                self.testSolution();
             })
         ;
     }

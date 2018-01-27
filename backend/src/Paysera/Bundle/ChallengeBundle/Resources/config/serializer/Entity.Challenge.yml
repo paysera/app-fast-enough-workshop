@@ -7,3 +7,5 @@ Paysera\Bundle\ChallengeBundle\Entity\Challenge:
         description:
             expose: true
             type: string
+        testCases:
+            expose: true

@@ -2,11 +2,11 @@ import jQuery from 'jquery';
 import PusherClient from '../pusher-client';
 import TableUpdater from './table-updater';
 import LeaderboardClient from './leaderboard-client';
-import Toaster from './toaster';
+import Notificator from './notificator';
 
 PusherClient.subscribeToLeaderboardUpdates((data) => {
     TableUpdater.processRow(data);
-    Toaster.showToast(data);
+    Notificator.notify(data);
 });
 
 
