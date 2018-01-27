@@ -1,6 +1,3 @@
 /node_modules
-/compiled
-!/compiled/.gitkeep
-!/src/compiled
-
+/src/compiled
 out/

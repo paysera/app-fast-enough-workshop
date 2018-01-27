@@ -37,3 +37,27 @@ In case you need to enter these containers, please use:
 
 Do not forget to check container names.
 
+### Electron
+
+If you not familiar with it, please read https://services.github.com/on-demand/paths/electron/starting-with-electron/outline.html
+
+We prepared `frontend_node_1` container so it can build electron app for Linux (Ubuntu) platform ,
+just run `npm run forge:package` inside of `frontend_node_1` container. 
+After it's done, look for binaries inside `frontend/out` folder.
+
+If You want to preview Electron app, only `host build` option from below can provide `npm run forge:start` command.
+Simply because `docker` does not have `GTK` or `Display` 
+
+In case your OS is other than Ubuntu, these are the options we provide:
+
+* special container:
+  * go to `frontend/multiplatform-build` and run `docker compose up`
+  * in another terminal run `docker exec -it -u app multiplatformbuild_node_1 bash`
+  * now you can build package for `Windows`, `Linux`, `Mac` systems:
+    * `npm run builder:win`
+    * `npm run builder:linux`
+    * `npm run builder:mac`
+
+* host build:
+  * in your Windows/Mac, you should install `node` and run `npm install` inside of `frontend` folder
+  * now run `npm run forge:package` and look for binary inside `frontend/app` folder.
