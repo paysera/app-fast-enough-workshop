@@ -61,3 +61,15 @@ In case your OS is other than Ubuntu, these are the options we provide:
 * host build:
   * in your Windows/Mac, you should install `node` and run `npm install` inside of `frontend` folder
   * now run `npm run forge:package` and look for binary inside `frontend/app` folder.
+
+### Mobile-ready
+
+We will use `manifest.json` and `ngrok` to allow native look from smart phone
+
+* download and extract `ngrok` - https://ngrok.com/download
+* run `ngrok http 9999` - you will get world visible url to your `frontend` container 
+* do not forget to run `ngrok http 8888` - you will get world visible url to your `backend` container
+* change `BACKEND_HOST` inside `frontend/src/main/config.js` to `ngrok` url pointing to `backend` container
+* create `manifest.json` and follow instruction in https://developers.google.com/web/fundamentals/web-app-manifest/
+* go with your mobile browser to `frontend` world visible url, from settings you should be able to choose `add to home screen`
+* launch the app from home screen. 
