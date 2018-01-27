@@ -4,6 +4,7 @@ import SolutionClient from './solution-client';
 import UserProvider from '../user-provider';
 import Timer from './timer';
 import CodeTester from './code-tester';
+import AlertHelper from './alert-helper';
 
 class ChallengeForm {
     constructor() {
@@ -43,23 +44,23 @@ class ChallengeForm {
 
     async testSolution() {
         Timer.pause();
-        jQuery(this.selector + ' .alerts-container').empty();
+        AlertHelper.clear();
 
         let solution = null;
         try {
             solution = await this.getValidSolution();
         } catch (error) {
-            this.appendAlert(error.message, 'danger');
+            AlertHelper.appendAlert(error.message, 'danger');
             return;
         }
 
         CodeTester.testSolution(solution).then(
             (result) => {
-                this.appendAlert('Solution <strong>looks good</strong>, You can submit it now.', 'success');
+                AlertHelper.appendAlert('Solution <strong>looks good</strong>, You can submit it now.', 'success');
             },
             (error) => {
                 jQuery.each(error.test_results, (key, element) => {
-                    this.appendAlert(element.message, 'warning');
+                    AlertHelper.appendAlert(element.message, 'warning');
                 });
             }
         )
@@ -67,29 +68,29 @@ class ChallengeForm {
 
     async submitSolution() {
         if (!navigator.onLine) {
-            this.appendAlert('Cannot submit solution while offline', 'info');
+            AlertHelper.appendAlert('Cannot submit solution while <strong>offline</strong>', 'info');
             return;
         }
         Timer.pause();
-        jQuery(this.selector + ' .alerts-container').empty();
+        AlertHelper.clear();
 
         let solution = null;
         try {
             solution = await this.getValidSolution();
         } catch (error) {
-            this.appendAlert(error.message, 'danger');
+            AlertHelper.appendAlert(error.message, 'danger');
             return;
         }
 
         SolutionClient.saveSolution(solution).then(
             (result) => {
                 jQuery.each(result.test_results, (key, element) => {
-                    this.appendAlert(element.message, 'success');
+                    AlertHelper.appendAlert(element.message, 'success');
                 });
             },
             (error) => {
                 jQuery.each(error.test_results, (key, element) => {
-                    this.appendAlert(element.message, 'warning');
+                    AlertHelper.appendAlert(element.message, 'warning');
                 });
             }
         )
@@ -115,17 +116,6 @@ class ChallengeForm {
         }
 
         return solution;
-    }
-
-    appendAlert(text, type) {
-        jQuery(this.selector + ' .alerts-container').append(`
-                <div class="alert alert-${type} alert-dismissible" role="alert">
-                    ${text}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            `);
     }
 
     init() {

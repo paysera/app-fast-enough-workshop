@@ -5,9 +5,9 @@ class ChallengesClient {
     getChallenges() {
         return axios.get(BACKEND_HOST + '/challenge/rest/v1/challenges')
             .then((response) => response.data)
+            .catch(() => [])
         ;
     }
-
 }
 
 export default new ChallengesClient();

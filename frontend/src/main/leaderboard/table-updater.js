@@ -1,4 +1,4 @@
-import jQuery from 'expose-loader?jQuery!jquery';
+import jQuery from 'jquery';
 import 'tablesorter';
 import UserProvider from '../user-provider';
 

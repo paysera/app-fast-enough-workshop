@@ -22,6 +22,8 @@ class UserStatus {
     }
 
     init() {
+        navigator.onLine ? this.setOnline() : this.setOffline();
+
         window.addEventListener('online', () => { this.setOnline() });
         window.addEventListener('offline', () => { this.setOffline() });
     }

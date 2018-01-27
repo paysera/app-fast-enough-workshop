@@ -1,5 +1,6 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 module.exports = {
     entry: ['babel-polyfill', __dirname + '/../src/index.js'],
@@ -46,6 +47,25 @@ module.exports = {
             'jQuery': 'jquery',
             'window.jQuery': 'jquery',
             'window.$': 'jquery'
+        }),
+        new OfflinePlugin({
+            safeToUseOptionalCaches: true,
+            caches: {
+                main: [
+                    ':rest:'
+                ],
+                additional: [
+                    ':externals:',
+                ],
+            },
+            externals: [
+                '/',
+                '/manifest.json',
+            ],
+            ServiceWorker: {
+                scope: '/',
+                output: '../sw.js'
+            },
         })
     ]
 };
