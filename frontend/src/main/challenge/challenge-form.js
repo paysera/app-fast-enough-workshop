@@ -67,12 +67,13 @@ class ChallengeForm {
     }
 
     async submitSolution() {
+        Timer.pause();
+        AlertHelper.clear();
+
         if (!navigator.onLine) {
             AlertHelper.appendAlert('Cannot submit solution while <strong>offline</strong>', 'info');
             return;
         }
-        Timer.pause();
-        AlertHelper.clear();
 
         let solution = null;
         try {
