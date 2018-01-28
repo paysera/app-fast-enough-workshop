@@ -7,6 +7,10 @@ class TableUpdater {
         this.selector = 'table.auto-update';
     }
 
+    clearTable() {
+        jQuery(this.selector + ' tbody tr').remove();
+    }
+
     async processRow({user, challenge, duration}) {
         let highlight = '';
         if (await UserProvider.getCurrentUser() === user) {

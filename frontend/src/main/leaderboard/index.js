@@ -15,6 +15,7 @@ jQuery(document).ready(() => {
 
     jQuery('body')
         .on('click', '#v-pills-leaderboards-tab', null, () => {
+            TableUpdater.clearTable();
             LeaderboardClient.getLeaderboard().then((data) => {
                 jQuery.each(data, (key, row) => TableUpdater.processRow(row))
             })

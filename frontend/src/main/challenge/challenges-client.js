@@ -1,11 +1,14 @@
-import axios from 'axios';
+import CachedClient from '../cached-client';
 import { BACKEND_HOST } from '../config';
 
 class ChallengesClient {
     getChallenges() {
-        return axios.get(BACKEND_HOST + '/challenge/rest/v1/challenges')
+        return CachedClient.get(BACKEND_HOST + '/challenge/rest/v1/challenges')
             .then((response) => response.data)
-            .catch(() => [])
+            .catch((error) => {
+                console.log(error.message);
+                return [];
+            })
         ;
     }
 }

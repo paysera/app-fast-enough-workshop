@@ -1,4 +1,4 @@
-import jQuery from 'jquery';
+import jQuery from 'expose-loader?jQuery!jquery';
 import ChallengesClient from './challenges-client';
 import SolutionClient from './solution-client';
 import UserProvider from '../user-provider';
@@ -124,7 +124,7 @@ class ChallengeForm {
 
         const self = this;
         jQuery('body')
-            .on('click', this.selector + ' #challenge-selector option:selected', null, function() {
+            .on('change', this.selector + ' #challenge-selector', null, function() {
                 self.processChangedChallenge(jQuery(this).val());
             })
             .on('click', this.selector + ' #submit', null, function() {
