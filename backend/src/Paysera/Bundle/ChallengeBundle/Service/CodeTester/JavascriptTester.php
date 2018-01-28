@@ -15,7 +15,9 @@ class JavascriptTester implements CodeTesterInterface
                 solution(%s);
             ',
             $code,
-            implode(', ', $testCase->getArguments())
+            implode(', ', array_map(
+                function ($arg) { return !is_numeric($arg) ? sprintf("'%s'", $arg) : $arg; },
+                $testCase->getArguments()))
         );
 
         $v8 = new \V8Js();

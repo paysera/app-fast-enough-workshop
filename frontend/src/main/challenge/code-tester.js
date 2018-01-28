@@ -12,7 +12,10 @@ class CodeTester {
         };
 
         jQuery.each(this.challenges[solution.challenge_identifier].test_cases, (key, test) => {
-            const args = test.arguments.join(', ');
+            const args = test.arguments
+                .map((item) => isNaN(item) ? `'${item}'` : item)
+                .join(', ')
+            ;
             const fn = `const solution = ${solution.solution}; solution(${args});`;
 
             let result = this.evaluate(fn, test.result);
@@ -41,7 +44,13 @@ class CodeTester {
                 message: error.message
             }
         }
-        if (result.toFixed(6) === expectedResult.toFixed(6)) {
+
+        if (!isNaN(expectedResult)) {
+            result = result.toFixed(6);
+            expectedResult = expectedResult.toFixed(6);
+        }
+
+        if (result === expectedResult) {
             return{
                 state: 'passed',
                 message: `Test passed asserting ${result} is equal to ${expectedResult}`
