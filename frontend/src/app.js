@@ -7,10 +7,13 @@ if (require('electron-squirrel-startup')) {
 let mainWindow;
 
 const createWindow = () => {
-
+    mainWindow = new BrowserWindow();
+    mainWindow.on('closed', () => {
+        mainWindow = null;
+    })
 };
 
-app.on('activate', () => {
+app.on('ready', () => {
     if (mainWindow === null) {
         createWindow();
     }

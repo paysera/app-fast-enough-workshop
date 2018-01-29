@@ -2,3 +2,4 @@
 /src/compiled
 out/
 ngrok*
+/sw.js
