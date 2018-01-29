@@ -1,5 +1,5 @@
 /node_modules
 /src/compiled
+/src/sw.js
 out/
 ngrok*
-/sw.js
