@@ -144,7 +144,7 @@ module.exports = {
             responseStrategy: 'cache-first',
         }),
         new CleanWebpackPlugin(['dist'], { root: appPath }),
-        //new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+        new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
     ]
 };
 
