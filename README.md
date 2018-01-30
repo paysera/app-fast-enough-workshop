@@ -26,7 +26,6 @@ Here you will learn how to create Real-Time PHP application with PWA and Electro
   * `cd` to directory
   * run `docker-compose up` container will make `npm install` and launch webpack dev server `npm run app:start`. 
   * go to address `http://localhost:9999` - you should see some text
-  * allow public access: `npm run app:public`
   * build app: `npm run app:build`
 
 Try both of these address - you should see some logs in containers
