@@ -30,9 +30,7 @@ module.exports = {
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 options: {
-                    presets: [
-                        ['env', { targets: { browsers: ['last 2 versions'] } }],
-                    ],
+                    presets: [['env', { targets: { ie: 9 } }]],
                     plugins: [
                         'transform-runtime'
                     ]
