@@ -1,4 +1,4 @@
-import jQuery from 'expose-loader?jQuery!jquery';
+import jQuery from 'jquery';
 import ChallengesClient from './challenges-client';
 import SolutionClient from './solution-client';
 import UserProvider from '../user-provider';

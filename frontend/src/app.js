@@ -15,7 +15,12 @@ const createWindow = () => {
         frame: true
     });
 
-    mainWindow.loadURL(`file://${__dirname}/index.html`);
+    if (process.env.NODE_ENV === 'production') {
+        mainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
+    } else {
+        mainWindow.loadURL(`http://0.0.0.0:9999`);
+    }
+
     mainWindow.webContents.openDevTools();
 
     mainWindow.on('closed', () => {
