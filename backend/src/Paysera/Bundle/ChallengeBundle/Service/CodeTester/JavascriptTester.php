@@ -32,7 +32,14 @@ class JavascriptTester implements CodeTesterInterface
             ;
         }
 
-        if (sprintf('%f', $return) === sprintf('%f', $testCase->getResult())) {
+        if (
+            (
+                is_numeric($testCase->getResult())
+                && is_numeric($return)
+                && sprintf('%f', $return) === sprintf('%f', $testCase->getResult())
+            )
+            || $return === $testCase->getResult()
+        ) {
             return $result
                 ->setState(TestResult::STATE_PASSED)
                 ->setMessage(sprintf('Test passed asserting %s is equal to %s', $testCase->getResult(), $return))
