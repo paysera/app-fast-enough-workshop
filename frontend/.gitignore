@@ -1,5 +1,4 @@
 /node_modules
-/src/compiled
-/src/sw.js
+/dist
 out/
 ngrok*
