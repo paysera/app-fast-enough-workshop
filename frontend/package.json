@@ -7,7 +7,7 @@
   "scripts": {
     "app:build": "webpack --config config/webpack.config.prod.js",
     "app:start": "webpack-dev-server --config config/webpack.config.dev.js",
-    "forge:start": "NODE_ENV='production' electron-forge start",
+    "forge:start": "NODE_ENV='development' electron-forge start",
     "forge:package": "NODE_ENV='production' electron-forge package",
     "builder:win": "NODE_ENV='production' electron-builder --win",
     "builder:linux": "NODE_ENV='production' electron-builder --linux",

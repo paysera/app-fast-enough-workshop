@@ -18,7 +18,7 @@ const createWindow = () => {
     if (process.env.NODE_ENV === 'production') {
         mainWindow.loadURL(`file://${__dirname}/../dist/index.html`);
     } else {
-        mainWindow.loadURL(`http://0.0.0.0:9999`);
+        mainWindow.loadURL(`http://localhost:9999`);
     }
 
     mainWindow.webContents.openDevTools();
