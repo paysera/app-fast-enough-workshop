@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
-npm install
-npm run app:start
+yarn install
+yarn run app:start
