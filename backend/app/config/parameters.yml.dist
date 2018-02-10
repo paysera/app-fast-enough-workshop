@@ -1,5 +1,0 @@
-parameters:
-    secret: ThisTokenIsNotSoSecretChangeIt
-    pusher_app_key: 'key'
-    pusher_app_secret: 'secret'
-    pusher_app_id: 'id'

@@ -1,3 +1,0 @@
-paysera_challenge:
-    resource: "@PayseraChallengeBundle/Resources/config/routing.xml"
-    prefix:   /
