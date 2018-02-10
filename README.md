@@ -24,3 +24,10 @@ Here you will learn how to create Real-Time PHP application with PWA and Electro
 - Integrate script with docker, add v8 support
 - Run and validate uploaded script
 - Integrate frontend with backend API
+
+
+### Presentations
+
+[PWA](https://github.com/aurimas4/paysera-workshop-2/raw/master/pwa.pdf)
+[Webpack](https://github.com/aurimas4/paysera-workshop-2/raw/master/webpack.pdf)
+[Docker & V8Js](https://spiteful-ticket.surge.sh)
