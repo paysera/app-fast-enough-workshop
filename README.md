@@ -28,6 +28,16 @@ Here you will learn how to create Real-Time PHP application with PWA and Electro
 
 ### Presentations
 
+#### Day 1
+
 [PWA](https://github.com/aurimas4/paysera-workshop-2/raw/master/pwa.pdf)
+
 [Webpack](https://github.com/aurimas4/paysera-workshop-2/raw/master/webpack.pdf)
+
 [Docker & V8Js](https://spiteful-ticket.surge.sh)
+
+#### Day 2
+
+[Electron](https://github.com/tomas7777/pristatymas/raw/master/pristatymas.pdf)
+
+[Pusher](https://worthless-play.surge.sh)
